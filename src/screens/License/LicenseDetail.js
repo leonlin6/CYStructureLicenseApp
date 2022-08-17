@@ -233,10 +233,16 @@ const LicenseDetail = (props) => {
 
   const onVerifyLicense = () => {
     props.navigation.navigate({
-      name:'LicenseQR'
+      name:'Scan'
     })
   }
 
+  
+  const onTransformLicense = () => {
+    props.navigation.navigate({
+      name:'LicenseQR'
+    })
+  }
 
   const DetailList = () => {
     let i = 0;
@@ -276,6 +282,10 @@ const LicenseDetail = (props) => {
             <TouchableOpacity onPress={onVerifyLicense} style={styles.btn}>
                 <Ionicons name='ios-qr-code-outline' size={60} color='#59B6C0'></Ionicons>
                 <Text style={{color:'black'}}>查驗此執照</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onTransformLicense} style={styles.btn}>
+                <Ionicons name='md-shuffle' size={60} color='#59B6C0'></Ionicons>
+                <Text style={{color:'black'}}>轉移執照</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -352,7 +362,7 @@ const styles = StyleSheet.create({
     paddingTop:20,
     borderTopWidth:1,
     borderTopColor:'gray',
-    justifyContent:'center',
+    justifyContent:'space-evenly',
     alignItems:'center',
     flexDirection:'row'
   },

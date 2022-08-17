@@ -51,17 +51,10 @@ const LicenseQR = (props) => {
               value={generateQRUrl()}
               logo={CYLogo}
               logoSize={50}
-              size={200}></QRCode>
+              size={300}></QRCode>
           </View>
           <View style={styles.footer}>
             <Text style={styles.info}>掃描此QR Code以查驗執照</Text>
-            <View style={styles.buttonArea}>
-              <TouchableOpacity
-                style={styles.btn}
-                onPress={onHomePress}>
-                <Text style={styles.btnText}>回到首頁</Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </View>
@@ -132,4 +125,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps,{setProofReq, setVerifyId})(LicenseQR);
+export default connect(mapStateToProps)(LicenseQR);

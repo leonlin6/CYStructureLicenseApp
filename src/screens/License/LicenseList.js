@@ -9,12 +9,10 @@ import {
   Dimensions
 } from 'react-native';
 import { 
-  ListItem, 
   Tab,
   TabView 
 } from '@rneui/themed';
 
-import ListComponent from '../../components/common/ListComponent';
 import {connect} from 'react-redux';
 import DateListComponent from '../../components/common/DateListComponent';
 import { Picker, DatePicker } from 'react-native-wheel-pick';
@@ -107,8 +105,6 @@ const LicenseList = (props) => {
             <DateListComponent 
               displayType={'list'} 
               navigation={props.navigation} 
-              toPage={'CredentialHistoryDetail'}
-              from={'History'}
             /> 
           </View>
         </TabView.Item>
@@ -131,8 +127,6 @@ const LicenseList = (props) => {
             <DateListComponent 
               displayType={'list'} 
               navigation={props.navigation} 
-              toPage={'CredentialHistoryDetail'}
-              from={'History'}
             /> 
           </View>
         </TabView.Item>
@@ -252,7 +246,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {  
   return {
-      walletHandle: state.walletHandle,
   };
 }
 

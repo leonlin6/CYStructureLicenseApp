@@ -22,14 +22,7 @@ const LicenseHome = (props) => {
     });
   }
 
-  const onCredentialHistory = () => {
-    props.navigation.navigate({
-      name:'CredentialHistory',
-      params:{
-        from:'WalletScreen'
-      }
-    });
-  }
+
 
   const onCreateCredential = () => {
     props.navigation.navigate('CreateCredential');
@@ -43,10 +36,26 @@ const LicenseHome = (props) => {
     props.navigation.navigate('CompanyList');
   }
 
+  const onVerifyLicense = () => {
+    props.navigation.navigate('Scan');
+
+  }
+
+  const onLogout = () => {
+    props.navigation.navigate('Logout');
+
+  }
+
+  const onReceiveLicense = () => {
+    props.navigation.navigate({
+      name:'LicenseQR'
+    })
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.titleArea}>
-          <Text style={styles.licenseAreaTitleText}>所屬執照</Text>
+          <Text style={styles.licenseAreaTitleText}>所屬單位</Text>
       </View>
       <View style={styles.licenseCategoryArea}>
         <View style={styles.iconArea}>
@@ -64,19 +73,25 @@ const LicenseHome = (props) => {
       <View style={styles.btnArea}>
         <View style={styles.puzzleContent}>
           <View style={styles.smallPuzzleArea}>
-            <TouchableOpacity onPress={onCredentialHistory} style={styles.btn}>
+            <TouchableOpacity onPress={onVerifyLicense} style={styles.btn}>
               <Ionicons name='scan' size={60} color='white'></Ionicons>
               <View style={{borderWidth:1, height:60, borderColor:'#b8d9f4'}}></View>
               <Text style={styles.btnText}>查驗執照</Text>
               <Ionicons name='chevron-forward' size={60} color='white'></Ionicons>
 
             </TouchableOpacity>
-            <TouchableOpacity onPress={onCreateCredential} style={styles.btn}>
+            <TouchableOpacity onPress={onReceiveLicense} style={styles.btn}>
               <Ionicons name='qr-code-sharp' size={60} color='white'></Ionicons>
               <View style={{borderWidth:1, height:60, borderColor:'#b8d9f4'}}></View>
               <Text style={styles.btnText}>接收執照</Text>
               <Ionicons name='chevron-forward' size={60} color='white'></Ionicons>
             </TouchableOpacity>
+            <TouchableOpacity onPress={onLogout} style={styles.btn}>
+              <Ionicons name='qr-code-sharp' size={60} color='white'></Ionicons>
+              <View style={{borderWidth:1, height:60, borderColor:'#b8d9f4'}}></View>
+              <Text style={styles.btnText}>登出</Text>
+              <Ionicons name='chevron-forward' size={60} color='white'></Ionicons>
+            </TouchableOpacity>            
           </View>
         </View>
       </View>
@@ -89,7 +104,6 @@ const LicenseHome = (props) => {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    justifyContent:'flex-start'
   },
   titleArea:{
     backgroundColor: 'white',
@@ -97,8 +111,7 @@ const styles = StyleSheet.create({
   },
   licenseAreaTitleText:{
     fontSize:30,
-    color:'#737071',
-    marginTop:10,
+    color:'#59B7BF',
     marginLeft:20,
     
   },

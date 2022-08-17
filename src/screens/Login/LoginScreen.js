@@ -11,10 +11,12 @@ import {
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import * as Animatable from 'react-native-animatable';
 import axios from 'axios';
 import { ENDPOINT_BASE_URL } from '../../APIs/APIs';
-import {setLoginToken, setWalletHandle, setPoolHandle, setMasterSecret} from '../../actions/index'
+import {setLoginToken} from '../../actions/index'
 
 
 // redux
@@ -117,12 +119,12 @@ const LoginScreen = (props) => {
     try{
       setIsLoading(true);
       requestLogin();
-      setTimeout(()=>{
-        props.navigation.navigate({
-          name:'LicenseHome',
+      // setTimeout(()=>{
+      //   props.navigation.navigate({
+      //     name:'LicenseHome',
       
-        });
-      },1000);
+      //   });
+      // },1000);
 
     }catch(error){
       console.log('error', error);
@@ -174,6 +176,15 @@ const LoginScreen = (props) => {
     setPasswordShow(!passwordShow);
   }
   
+  const onFreeVerify = () => {
+    props.navigation.navigate({
+      name:'Scan',
+      params:{
+        from:'Login',
+        type:'Verify'
+      }
+    })
+  }
 
   if(isLoading){
     return(
@@ -187,6 +198,9 @@ const LoginScreen = (props) => {
   return (
     <View style={styles.container} >
       <View style={styles.header}>
+        <TouchableOpacity onPress={onFreeVerify} style={styles.freeVerify}>
+          <MaterialCommunityIcons name='qrcode-scan' size={45} color='white'></MaterialCommunityIcons>
+        </TouchableOpacity>
         <View style={styles.logoWrap}>
           <View style={styles.circleWrap}>
             <Animated.View style={[styles.circle, {height:resizeLogoCircleAnim, width:resizeLogoCircleAnim}]}>
@@ -217,7 +231,7 @@ const LoginScreen = (props) => {
             </View>
             <View style={styles.pwInput}>
               <TextInput
-                style={{padding:0,margin:0}}
+                style={{padding:0, margin:0}}
                 placeholder="請輸入身分證字號"
                 onChangeText={(val) => {handlePasswordChange(val)}}
                 onFocus={() => {setInputPasswordFocus(true)}}
@@ -258,6 +272,13 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 125,
     paddingHorizontal: 30
   },  
+  freeVerify:{
+    position:'absolute',
+    top:10,
+    right:10,
+    borderRadius:50,
+    padding:10,
+  },
   loadingWrap:{
     flex:1,
     justifyContent: 'center',
